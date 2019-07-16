@@ -1,0 +1,25 @@
+{
+  "name": "identicon-address",
+  "version": "1.0.0",
+  "description": "Identicon for coin addresses",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zenywallet/identicon-address.git"
+  },
+  "author": "zenywallet",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zenywallet/identicon-address/issues"
+  },
+  "homepage": "https://github.com/zenywallet/identicon-address#readme",
+  "dependencies": {
+    "canvas": "^1.6.5",
+    "color": "^3.1.2",
+    "express": "^4.17.1",
+    "murmurhash-native": "^3.4.1"
+  }
+}
