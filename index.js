@@ -12,6 +12,7 @@ app.listen(7000);
 
 app.get('/avatar/:hash', function(req, res) {
   var size = parseInt(req.query.s) || 96;
+  var round = parseInt(req.query.r) || 0;
   size = size > 512 ? 512 : size;
   var hash = req.params.hash;
   if(hash.endsWith('.png')) {
@@ -22,11 +23,12 @@ app.get('/avatar/:hash', function(req, res) {
   console.log(hash + ' ' + ip);
 
   res.writeHead(200, {'Content-Type': 'image/png'});
-  res.end(Spirograph.getImage(hash, parseInt(size)), 'binary');
+  res.end(Spirograph.getImage(hash, parseInt(size), round), 'binary');
 });
 
 app.get('/coin/:addr', function(req, res) {
   var size = parseInt(req.query.s) || 96;
+  var round = parseInt(req.query.r) || 0;
   size = size > 512 ? 512 : size;
   var addr = req.params.addr;
   if(addr.endsWith('.png')) {
@@ -39,7 +41,7 @@ app.get('/coin/:addr', function(req, res) {
   console.log(hash + ' ' + ip);
 
   res.writeHead(200, {'Content-Type': 'image/png'});
-  res.end(DotMatrix.getImage(hash, parseInt(size)), 'binary');
+  res.end(DotMatrix.getImage(hash, parseInt(size), round), 'binary');
 });
 
 app.get('/spirograph', function(req, res) {
@@ -51,7 +53,7 @@ app.get('/spirograph', function(req, res) {
   var size = parseInt(req.query.s) || 96;
   size = size > 512 ? 512 : size;
   res.writeHead(200, {'Content-Type': 'image/png'});
-  res.end(Spirograph.getImage(hash, parseInt(size)), 'binary');
+  res.end(Spirograph.getImage(hash, parseInt(size), 1), 'binary');
 });
 
 app.get('/dotmatrix', function(req, res) {
@@ -61,9 +63,8 @@ app.get('/dotmatrix', function(req, res) {
   }
 
   var size = parseInt(req.query.s) || 96;
-  size = size > 512 ? 512 : size;
   res.writeHead(200, {'Content-Type': 'image/png'});
-  res.end(DotMatrix.getImage(hash, parseInt(size)), 'binary');
+  res.end(DotMatrix.getImage(hash, parseInt(size), 1), 'binary');
 });
 
 app.get('/test_spirograph', function(req, res) {

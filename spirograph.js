@@ -54,7 +54,7 @@ function getComplementaryColor(colorToInvert)
 function Spirograph() {
 }
 
-Spirograph.getImage = function(hash_data, size = 96) {
+Spirograph.getImage = function(hash_data, size = 96, round = 0) {
   var hash;
   if (typeof hash_data === 'string') {
     var hash = new Uint8Array(hexToBytes(hash_data));
@@ -115,6 +115,14 @@ Spirograph.getImage = function(hash_data, size = 96) {
   line_draw(point1, color1);
   line_draw(point2, color2);
   line_draw(point3, color3);
+
+  if(round) {
+    ctx.beginPath();
+    ctx.globalCompositeOperation = "destination-in";
+    ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2, false);
+    ctx.closePath();
+    ctx.fill()
+  }
 
   return canvas.toBuffer();
 }

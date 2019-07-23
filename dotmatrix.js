@@ -54,7 +54,7 @@ function getComplementaryColor(colorToInvert)
 function DotMatrix() {
 }
 
-DotMatrix.getImage = function(hash_data, size = SIZE) {
+DotMatrix.getImage = function(hash_data, size = SIZE, round = 0) {
   var hash;
   if (typeof hash_data === 'string') {
     var hash = new Uint8Array(hexToBytes(hash_data));
@@ -108,6 +108,14 @@ DotMatrix.getImage = function(hash_data, size = SIZE) {
       ctx.closePath();
       ctx.fill();
     }
+  }
+
+  if(round) {
+    ctx.beginPath();
+    ctx.globalCompositeOperation = "destination-in";
+    ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2, false);
+    ctx.closePath();
+    ctx.fill()
   }
 
   return canvas.toBuffer();
